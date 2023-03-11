@@ -6,6 +6,8 @@ const morgan = require("morgan");
 const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
 const user = require("./routes/router");
+const guide = require("./routes/guides");
+const client = require("./routes/client");
 // const paymentRoute = require("./routes/payment.js");
 // const transactionRoute = require("./routes/transaction.js");
 
@@ -28,6 +30,8 @@ app.use(cors(corsConfig));
 
 app.use(cookieParser());
 app.use("/api/auth", user);
+app.use("/guide", guide);
+app.use("/client", client);
 // app.use("/api", paymentRoute);
 // app.use("/api", transactionRoute);
 // app.get("/api/getkey", (req, res) =>

@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 
 var guideSchema = new mongoose.Schema(
   {
-    _id: {
+    id: {
       type: String,
       required: true,
     },
@@ -27,7 +27,11 @@ var guideSchema = new mongoose.Schema(
     },
     specialization: {
       type: [String],
-      require: true,
+      required: true,
+    },
+    language: {
+      type: [String],
+      required: true,
     },
   },
   { timestamps: true }

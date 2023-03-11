@@ -16,8 +16,6 @@ const {
   resetPassword,
 } = require("../controller/user");
 
-const { allGuides, filter } = require("../controller/client");
-
 // MIDDLEWARE
 
 const { isSignedIn, unauthorizedAccess } = require("../middleware/auth");

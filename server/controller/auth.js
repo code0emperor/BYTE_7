@@ -41,7 +41,9 @@ exports.signup = (req, res) => {
       const verificationRoute = CryptoJS.AES.encrypt(
         user.email,
         process.env.SECRET
-      ).toString();
+      )
+        .toString()
+        .split("/")[0];
 
       req.auth = { _id: user._id };
       var mail = sendMail_1(
@@ -192,10 +194,9 @@ exports.verifyEmail = (req, res) => {
   // const user = req.auth;
   // const verificationRoute = req.body.verificationRoute;
   const verificationRoute = req.params["verificationRoute"];
-  const email = CryptoJS.AES.decrypt(
-    verificationRoute,
-    process.env.SECRET
-  ).toString(CryptoJS.enc.Utf8);
+  const email = CryptoJS.AES.decrypt(verificationRoute, process.env.SECRET)
+    .toString(CryptoJS.enc.Utf8)
+    .split("/")[0];
   User.findOne({ email: email }, (err, user) => {
     if (!user || err)
       return res

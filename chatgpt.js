@@ -1,21 +1,18 @@
-import { ChatGPTAPI } from "chatgpt";
-import dotenv from "dotenv";
-import fetch from "node-fetch";
+const { Configuration, OpenAIApi } = require("openai");
+require("dotenv").config();
 
-dotenv.config();
-const api = new ChatGPTAPI({ apiKey: process.env.API_KEY });
+const configuration = new Configuration({
+  apiKey: process.env.API_KEY,
+});
+const openai = new OpenAIApi(configuration);
 
-const sample_call = async (dest, src) => {
-  let output = "";
-  let res = await api.sendMessage(
-    `Tell me about historical places to visit in ${dest} with their address.`
-  );
-  output += res.text;
-  res = await api.sendMessage(`How can I travel to these places from ${src}?`, {
-    parentMessageId: res.id,
+const runCompletion = async (src, dest) => {
+  const completion = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: `Tell me everything about places can I visit in ${dest} and what are their addresses? What are the best ways to get there from ${src}?`,
+    max_tokens: 2048,
   });
-  output += res.text;
-  return output;
+  return completion.data.choices[0].text;
 };
 
-export { sample_call };
+module.exports.runCompletion = runCompletion;

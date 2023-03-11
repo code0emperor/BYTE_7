@@ -1,6 +1,5 @@
-import express from "express";
-import { sample_call } from "./chatgpt.js";
-import routes from "./routes/routes.js";
+const express = require("express");
+const routes = require("./routes/routes.js").router;
 
 const app = express();
 

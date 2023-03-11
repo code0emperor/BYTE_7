@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "dependencies": {
     "chatgpt": "^5.0.9",
     "dotenv": "^16.0.3",
@@ -7,7 +6,8 @@
     "mongoose": "^7.0.1",
     "node": "^18.15.0",
     "node-fetch": "^3.3.0",
-    "nodemon": "^2.0.21"
+    "nodemon": "^2.0.21",
+    "openai": "^3.2.1"
   },
   "scripts": {
     "start": "nodemon app.js"

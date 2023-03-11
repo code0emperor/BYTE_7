@@ -1,11 +1,11 @@
 import express from "express";
-import { sample_call } from "../chatgpt.js";
+import { sample_call } from "../controller/chatgpt.js";
 
-const router = express.Router();
+const route = express.Router();
 
-router.get("/:src/:dest", async (req, res) => {
+route.get("/:src/:dest", async (req, res) => {
   const output = await sample_call(req.params.src, req.params.dest);
   res.send(output);
 });
 
-export default router;
+export default route;
